@@ -10,13 +10,13 @@ $msg = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = trim($_POST['nama']);
     $deskripsi = trim($_POST['deskripsi']);
-    if ($nama != "") {
+    if ($nama != "" && str_word_count($deskripsi) >= 2) {
         $stmt = $conn->prepare("INSERT INTO kategori (nama_kategori, deskripsi) VALUES (?, ?)");
         $stmt->bind_param("ss", $nama, $deskripsi);
         $stmt->execute();
         $msg = "Kategori berhasil ditambahkan!";
     } else {
-        $msg = "Nama kategori wajib diisi.";
+        $msg = "Input tidak valid. Nama wajib diisi dan deskripsi minimal 2 kata.";
     }
 }
 
@@ -35,14 +35,14 @@ $result = $conn->query("SELECT * FROM kategori");
     <div class="section">
         <h2><i class="fas fa-tags"></i> Manajemen Kategori</h2>
         <?php if ($msg): ?><p style="color:green"><?= $msg ?></p><?php endif; ?>
-        <form method="POST">
+        <form method="POST" id="form-kategori">
             <div class="form-group">
                 <label>Nama Kategori:</label>
                 <input type="text" name="nama" required>
             </div>
             <div class="form-group">
                 <label>Deskripsi:</label>
-                <input type="text" name="deskripsi">
+                <input type="text" name="deskripsi" required>
             </div>
             <button type="submit"><i class="fas fa-plus"></i> Tambah Kategori</button>
         </form>
@@ -61,5 +61,7 @@ $result = $conn->query("SELECT * FROM kategori");
         <a class="logout-btn" href="admin_dashboard.php">Kembali ke Dashboard</a>
     </div>
 </div>
+
+<script src="../js/admin.js"></script>
 </body>
 </html>

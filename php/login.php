@@ -27,6 +27,9 @@ if (isset($_SESSION['username'])) {
                 <p class="login-subtitle">Sistem Peminjaman Barang UKM</p>
                 <?php if (isset($_SESSION['error'])): ?>
                     <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+                <?php elseif (isset($_SESSION['success'])): ?>
+                    <p style="color:green"><?= $_SESSION['success']; unset($_SESSION['success']); ?></p>
+                <?php else: ?>
                 <?php endif; ?>
                 <form action="process_login.php" method="POST">
                     <div class="form-group">

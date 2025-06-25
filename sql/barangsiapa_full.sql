@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS peminjaman (
     FOREIGN KEY (peminjam_id) REFERENCES users(id)
 );
 
--- Data admin default
+-- data admin
 INSERT INTO users (username, password, role) VALUES
 ('admin', '$2y$10$sH5Nr7MgPgk4pk8OFwFTheAAJ7ZyB6xPDbkWzyvszXs.B4bx5msgC', 'admin');
--- Password admin = admin123
+-- pw admin123
