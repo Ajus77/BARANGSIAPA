@@ -10,7 +10,7 @@
                     e.preventDefault();
 
                     const targetId = this.getAttribute('data-target');
-                    // const targetId = daftar-barang (nav-link ke 3)
+                    // const targetId = daftar-barang
                     
                     sections.forEach(section => {
                         section.classList.add('hidden');
